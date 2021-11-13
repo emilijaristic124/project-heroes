@@ -1,0 +1,29 @@
+<ion-header> 
+
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    
+    <ion-title>Heroes</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+
+  <ion-searchbar placeholder="Search hero name" inputmode="text" (ionInput)="filtered($event)"></ion-searchbar>
+
+ 
+  <ion-slides class="slidesControl">
+    <ion-slide *ngFor= "let heroe of heroes" >
+      <app-one-heroe [heroe]="heroe" [routerLink]="heroe.id"></app-one-heroe>
+    </ion-slide>
+  </ion-slides>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openModal()">
+      <ion-icon name="add-circle-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

@@ -1,0 +1,65 @@
+<ion-header>
+  <ion-item  routerLink="/heroes">
+    <ion-icon name="arrow-back" color="primary"></ion-icon>
+    <ion-title>Edit heroe</ion-title>
+  </ion-item>
+</ion-header>
+
+<ion-content>
+  <ion-card>
+    <ion-card-header>
+      <ion-card-title class="ion-text-center"> Edit heroe!</ion-card-title>
+    </ion-card-header>
+      <ion-card-content>
+  
+    <form #f="ngForm" (ngSubmit)="editHeroe(heroe.id, name, health, damage, picture)">
+      <ion-grid>
+        <ion-row>
+          <ion-col size-sm="6" offset-sm="3">
+            <ion-item>
+              
+              <ion-input placeholder="{{heroe.name}}" value="{{heroe.name}}" name="name" ngModel name="name" #name="ngModel"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row>
+          <ion-col size-sm="6" offset-sm="3">
+            <ion-item>
+              <ion-input placeholder="{{heroe.health}} " value= "{{heroe.health}}" name="health" ngModel name="health" #health="ngModel"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row>
+          <ion-col size-sm="6" offset-sm="3">
+            <ion-item>
+              <ion-input placeholder="{{heroe.damage}}" value= "{{heroe.damage}}" name="damage" ngModel name="damage" #damage="ngModel"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row>
+          <ion-col size-sm="6" offset-sm="3">
+            <ion-item>
+              <ion-input placeholder="{{heroe.picture}}" value= "{{heroe.picture}}" name="picture" ngModel name="picture" #picture="ngModel"></ion-input>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+  
+        <ion-row>
+          <ion-col size-sm="6" offset-sm="3">
+            <ion-button expand="block" type="submit"> Save </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+    </ion-card-content>
+  </ion-card>
+</ion-content>
+
+<!--
+{{heroe.health}}
+ {{heroe.damage}}
+ [src]="heroe.picture"
+-->
