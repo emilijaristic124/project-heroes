@@ -135,6 +135,8 @@ export class HeroesService {
       }),
       take(1),
       tap((heroes)=>{
+        console.log("GENERATED ID");
+        console.log(generatedId);
         newHeroe.id=generatedId;
         this._heroes.next(heroes.concat(newHeroe));
       })
@@ -143,12 +145,21 @@ export class HeroesService {
   }
 
   getHeroes(){
+    let logedUser;
+    logedUser: this.authService.userId.subscribe(result=>{
+      logedUser= result;
+    })
     return this.http.get<{[key:string]:HeroeData}>(`https://project-heroes-e78cb-default-rtdb.europe-west1.firebasedatabase.app/heroes.json`)
     .pipe(map((heroesData)=>{
       const heroes: HeroeModel[]=[];
 
       for(const key in heroesData){
-        if(heroesData.hasOwnProperty(key)){
+        console.log("userId-ovi");
+        console.log("loged user");
+        console.log(logedUser);
+        console.log("userid iz heroesData");
+        console.log(heroesData[key].userId);
+        if(heroesData.hasOwnProperty(key) && heroesData[key].userId==logedUser){
           heroes.push(new HeroeModel(key,heroesData[key].name,heroesData[key].picture,heroesData[key].health,heroesData[key].damage,heroesData[key].userId));
         }
       }
@@ -170,7 +181,7 @@ export class HeroesService {
      this._heroes.asObservable().subscribe(result=>{
       result.forEach(element => {
         if(element.id==id){
-         console.log("naso sam nesto");
+         console.log("nasao sam nesto");
           
           vrati= element;
           console.log(vrati);

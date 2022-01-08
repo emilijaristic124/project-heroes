@@ -51,8 +51,10 @@ export class AuthService {
     return this._user.asObservable().pipe(
       map((user)=>{
         if(user){
+  
           return user.id;
         }else {
+         
           return null;
         }
       })

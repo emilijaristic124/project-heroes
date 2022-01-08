@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { HeroeModel } from '../heroe-model';
 import { HeroesService } from '../heroes.service';
@@ -12,15 +12,16 @@ import { HeroesService } from '../heroes.service';
 export class EditHeroePage implements OnInit {
 
   heroe: HeroeModel;
-  constructor(private route:ActivatedRoute, private heroesService: HeroesService,private alertCtrl:AlertController ) { }
+  constructor(private router:Router,private route:ActivatedRoute, private heroesService: HeroesService,private alertCtrl:AlertController ) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe(paramMap=>{
       console.log("OVO GLEDAM SAD");
     console.log(this.heroesService.getHeroe(paramMap.get("heroeId"))) ;
     this.heroe=this.heroesService.getHeroe(paramMap.get("heroeId"));
+    
      console.log("OVO GLEDAM SAD");
-     //ovde treba da ga catchujem
+     //ovde treba da catchujem
      //console.log(this.heroesService.getHeroe("-Mll1XFbUWgIIdNwdP1d"));
      
     })
@@ -38,6 +39,7 @@ export class EditHeroePage implements OnInit {
            this.heroesService.editHeroe(id, name, health, damage, picture);
            console.log("ispisujem heroja kojeg treba da zapamtim");
            console.log(id, name.value, health.value, damage.value, picture.value);
+           this.router.navigateByUrl("/heroes");
            console.log('Editovan heroj :D');
          } 
         },

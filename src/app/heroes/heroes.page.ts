@@ -54,7 +54,7 @@ export class HeroesPage implements OnInit,OnDestroy {
     let count=0;
     this.heroes.forEach(heroe => {
       
-      if (heroe.name.toLowerCase()== searchName.toLowerCase()){
+      if (heroe.name.toLowerCase().includes(searchName.toLowerCase())){
         this.searchedHeroe=heroe;
         this.indexNumber=count;
       } else{
